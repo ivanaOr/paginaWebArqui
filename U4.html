@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arquitectura de Computadoras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+        header {
+            background-color: #ffcccc;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        nav {
+            background-color: #ff9999;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 0 15px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            padding: 100px;
+            margin: 20px;
+            background-color: #D8BFD8;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #ffcccc;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        footer p {
+            margin: 0;
+        }
+        #Indice {
+            text-align: left;
+        }
+        #Indice a {
+            color: #ff9999; 
+            display: block;
+            margin: 5px 0;
+        }
+        #Indice a:hover{
+            text-decoration: underline;
+        }
+        img {
+  display: block;
+  width: 40%;
+  margin: auto;
+}
+.back-to-top {
+            display: block;
+            width: 70px;
+            margin: 70px auto;
+            text-align: center;
+            font-size: 80px;
+            text-decoration: none;
+            color: #ff6699; /* Cambia esto al color que prefieras */
+        }
+        .back-to-top:hover {
+            color: #ff3366; /* Cambia esto al color que prefieras */
+        }
+       
+       
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Arquitectura de Computadoras</h1>
+</header>
+
+<nav>
+    <a href="principal.html">Inicio</a>
+    <a href="principal.html">Unidades</a>
+    <a href="principal.html">Prácticas</a>
+    
+</nav>
+
+
+
+<section id=" #Indice">
+    <h1>Unidad 1</h1>
+   
+    <a href="#Indice" > INDICE</a><br>
+    <a href="#4.1">  4.1 Aspectos básicos de la computación paralela</a><br>
+    <a href="#4.2">  4.2 Tipos de computación paralela.</a><br>
+    <a href="#4.2.1"> 4.2.1 Clasificacion.</a><br>
+    <a href="#4.2.2">  4.2.2 Arquitectura de computadores secuenciales.</a><br>
+    <a href="#4.2.3"> 4.2.3 Organización de direcciones de memoria. </a><br>
+    <a href="#4.3"> 4.3 Sistema de memoria compartida. </a><br>
+    <a href="#4.3.1.1">4.3.1.1 Redes de medio compartida.</a><br>
+    <a href="#4.3.1.2"> 4.3.1.2 Redes conmutadas.</a><br>
+    <a href="#4.4">   4.4 Sisitemas de memoria construida. </a><br>
+    <a href="#4.5">  4.5 Casos de estudio. </a><br>
+   
+    
+</div>
+</section>
+<section id = "4.1">
+    <h2> 4.1 Aspectos básicos de la computación paralela</h2>
+<p>
+    La computación paralela se basa en la idea de dividir un problema en tareas más pequeñas y procesarlas de manera simultánea utilizando múltiples recursos de computación. Esto permite un procesamiento más rápido y eficiente en comparación con los enfoques secuenciales tradicionales. Algunos aspectos fundamentales de la computación paralela incluyen 
+    la sincronización de tareas, la comunicación entre procesos y la gestión de recursos.  
+
+</p>
+<img src="unidades/fotos/U1/computacion paralela.jpg">
+
+<p>
+    <h3>LEY DE AMDAHL Y LEY DE GUSTAFSON</h3>
+    Idealmente, la aceleración a partir de la paralelización es lineal, doblar el número de elementos de procesamiento debe reducir a la mitad el tiempo de ejecución y doblarlo por segunda vez debe nuevamente reducir el tiempo a la mitad. Sin embargo, muy pocos algoritmos paralelos logran una aceleración óptima. La mayoría tienen una aceleración casi lineal para un pequeño número de elementos de procesamiento, y pasa a ser constante para un gran número de elementos de procesamiento.
+    La aceleración potencial de un algoritmo en una plataforma de cómputo en paralelo está dada por la ley de Amdahl, formulada originalmente por Gene Amdahl en la década de 1960. Esta señala que una pequeña porción del programa que no pueda paralelizarse va a limitar la aceleración que se logra con la paralelización. Los programas que resuelven problemas matemáticos o ingenieriles típicamente consisten en varias partes paralelizables y varias no paralelizables (secuenciales).
+    La ley de Gustafson es otra ley en computación que está en estrecha relación con la ley de Amdahl. Ambas leyes asumen que el tiempo de funcionamiento de la parte secuencial del programa es independiente del número de procesadores. La ley de Amdahl supone que todo el problema es de tamaño fijo, por lo que la cantidad total de trabajo que se hará en paralelo también es independiente del número de procesadores, mientras que la ley de Gustafson supone que la cantidad total de trabajo que se hará en paralelo varía linealmente con el número de procesadores.
+    
+    <h3>DEPENDENCIAS</h3>
+    Entender la dependencia de datos es fundamental en la implementación de algoritmos paralelos. Ningún programa puede ejecutar más rápidamente que la cadena más larga de cálculos dependientes (conocida como la ruta crítica), ya que los cálculos que dependen de cálculos previos en la cadena deben ejecutarse en orden. Sin embargo, la mayoría de los algoritmos no consisten sólo de una larga cadena de cálculos dependientes; generalmente hay oportunidades para ejecutar cálculos independientes en paralelo.
+    Sea Pi y Pj dos segmentos del programa. Las condiciones de Bernstein describen cuando los dos segmentos son independientes y pueden ejecutarse en paralelo. Para Pi, sean Iitodas las variables de entrada y Oilas variables de salida, y del mismo modo para Pj. Pi y Pj son independientes si satisfacen.
+
+
+</p>
+
+
+</section>
+
+<section id="4.2">
+    <h2>4.2 Tipos de computación paralela</h2>
+<p>
+    Los distintos tipos o arquitecturas de procesamiento en paralelo y cómo funcionan son:
+<br>
+    <h3>SISD (Single Instruction, Single Data)</h3><br>
+    En el tipo de computación denominada Instrucción Única, Datos Únicos (SISD), un único procesador se encarga de gestionar simultáneamente un algoritmo como una única fuente de datos.
+    <br>
+    SISD representa una organización informática que tiene una unidad de control, una de procesamiento y una de memoria similar a la computadora serie. SISD ejecuta las instrucciones secuencialmente y puede o no ser capaz de realizar procesamiento en paralelo, dependiendo de su configuración. Las instrucciones ejecutadas secuencialmente podrán cruzarse a lo largo de sus fases de ejecución. Es posible que haya más de una unidad funcional dentro de una computadora SISD. Sin embargo, una unidad de control está a cargo de todas las unidades funcionales.
+    <br>
+    Dichos sistemas permiten el procesamiento de tuberías o el uso de numerosas unidades funcionales para lograr un procesamiento paralelo.
+    <br>
+   <h3> MISD (Multiple Instruction, Single Data)</h3><br>
+    <br>
+    Los procesadores múltiples son estándar en las computadoras que utilizan Instrucción Múltiple, Datos Únicos (MISD). Al utilizar varios algoritmos, todos los procesadores comparten los mismos datos de entrada.
+    
+    Las computadoras MISD pueden realizar simultáneamente muchas operaciones en el mismo lote de datos. Como era de esperar, la cantidad de operaciones se ve afectada por la cantidad de procesadores disponibles.
+    
+    La estructura MISD consta de muchas unidades de procesamiento, cada una de las cuales opera según sus instrucciones y sobre un flujo de datos comparable. La salida de un procesador se convierte en la entrada del siguiente.
+    <br>
+    <h3>SIMD (Single Instruction, Multiple Data)<br></h3>
+    Las computadoras que utilizan la arquitectura SIMD (Instrucción Única, Datos Múltiples) tienen múltiples procesadores que ejecutan instrucciones idénticas. Sin embargo, cada procesador proporciona las instrucciones con su colección única de datos.
+    
+    Las computadoras SIMD aplican el mismo algoritmo a varios conjuntos de datos. La arquitectura SIMD cuenta con varios componentes de procesamiento, los cuales están bajo la supervisión de una única unidad de control. Mientras procesa numerosos datos, cada uno recibe la misma instrucción de la unidad de control. Varios módulos incluidos en el subsistema compartido ayudan en la comunicación simultánea con cada CPU.
+    <br>
+    MIMD (Multiple Instruction, Multiple Data)
+    Las computadoras de Instrucción Múltiple, Datos Múltiples (MIMD) se caracterizan por la presencia de múltiples procesadores y cada uno de ellos es capaz de aceptar de forma independiente su flujo de instrucciones. Este tipo de computadoras tienen muchos procesadores y, además, cada CPU extrae datos de un flujo de datos diferente.
+    
+    Una computadora MIMD es capaz de ejecutar muchas tareas simultáneamente. Aunque las computadoras MIMD son más adaptables, desarrollar los sofisticados algoritmos que impulsan estas máquinas es más complejo.
+    
+    
+
+
+
+
+</p>
+
+<p>
+   <h3> SPMD (Single Program, Multiple Data)</h3><br>
+    Los sistemas SPMD, que significa Programa Único, Datos Múltiples, son un subconjunto de MIMD. Aunque una computadora SPMD está construida de manera similar a una MIMD, cada uno de sus procesadores es responsable de ejecutar las mismas instrucciones.
+    <br>
+    SPMD es una programación de paso de mensajes utilizada en sistemas informáticos de memoria distribuida. De este modo, un grupo de computadoras separadas, denominadas colectivamente nodos, forman una computadora con memoria distribuida. Cada nodo inicia su aplicación y utiliza rutinas de envío/recepción para enviar y recibir mensajes cuando interactúa con otros nodos.​
+    <br>
+   <h3>MPP (Massively Parallel Processing)</h3> 
+    Se crea una estructura de almacenamiento llamada Procesamiento Masivo en Paralelo (MPP) para gestionar la ejecución coordinada de las operaciones del programa por parte de numerosos procesadores.
+    
+    Dado que cada CPU utiliza su sistema operativo y su memoria, este procesamiento coordinado se puede aplicar a diferentes secciones del programa. Como resultado, las bases de datos MPP pueden manejar enormes cantidades de datos y ofrecer análisis basados en grandes conjuntos de datos considerablemente más rápido.
+    
+    Los procesadores MPP normalmente se comunican a través de una interfaz de mensajería y pueden tener hasta 200 o más procesadores trabajando en una aplicación. Funciona permitiendo la transmisión de mensajes entre procesos a través de un conjunto de enlaces de datos correspondientes.
+
+
+</p>
+
+</section>
+<section id="4.2.1">
+    <h2>4.2.1 Clasificacion</h2>
+<p>
+    Las computadoras paralelas se pueden clasificar de acuerdo con el nivel en el que el hardware soporta paralelismo. Esta clasificación es análoga a la distancia entre los nodos básicos de cómputo. Estos no son excluyentes entre sí, por ejemplo, los grupos de multiprocesadores simétricos son relativamente comunes.
+
+    <h3>COMPUTACIÓN MULTINÚCLEO</h3>
+    Un procesador multinúcleo es un procesador que incluye múltiples unidades de ejecución (núcleos) en el mismo chip. Un procesador multinúcleo puede ejecutar múltiples instrucciones por ciclo de secuencias de instrucciones múltiples.
+    <br>
+    <h3>MULTIPROCESAMIENTO SIMÉTRICO</h3>
+    Un multiprocesador simétrico (SMP) es un sistema computacional con múltiples procesadores idénticos que comparten memoria y se conectan a través de un bus. La contención del bus previene el escalado de esta arquitectura.
+    <br>
+    <h3> COMPUTACIÓN EN CLÚSTER</h3>
+    Un clúster es un grupo de ordenadores débilmente acoplados que trabajan en estrecha colaboración, de modo que en algunos aspectos pueden considerarse como un solo equipo.
+    <br>
+    <h3> PROCESAMIENTO PARALELO MASIVO</h3>
+    Tienden a ser más grandes que los clústeres, con «mucho más» de 100 procesadores. En un MPP, cada CPU tiene su propia memoria y una copia del sistema operativo y la aplicación.
+    <br>
+    <h3>COMPUTACIÓN DISTRIBUIDA</h3>
+    La computación distribuida es la forma más distribuida de la computación paralela. Se hace uso de ordenadores que se comunican a través de la Internet para trabajar en un problema dado.
+    <br>
+    <h3>COMPUTADORAS PARALELAS ESPECIALIZADAS</h3>
+    Dentro de la computación paralela, existen dispositivos paralelos especializados que generan interés. Aunque no son específicos para un dominio, tienden a ser aplicables sólo a unas pocas clases de problemas paralelos.
+    <br>
+    <h3>CÓMPUTO RECONFIGURABLE CON ARREGLOS DE COMPUERTAS PROGRAMABLES</h3>
+    El cómputo reconfigurable es el uso de un arreglo de compuertas programables (FPGA) como coprocesador de un ordenador de propósito general.
+    <br>
+    <h3></h3>CÓMPUTO DE PROPÓSITO GENERAL EN UNIDADES DE PROCESAMIENTO GRÁFICO (GPGPU)</h3>
+    Es una tendencia relativamente reciente en la investigación de ingeniería informática. Los GPUs son co-procesadores que han sido fuertemente optimizados para procesamiento de gráficos por computadora.
+    <br>
+    <h3> CIRCUITOS INTEGRADOS DE APLICACIÓN ESPECÍFICA</h3>
+    Debido a que un ASIC (por definición) es específico para una aplicación dada, puede ser completamente optimizado para esa aplicación. Como resultado, para una aplicación dada, un ASIC tiende a superar a un ordenador de propósito general.
+    <br>
+    <h3> PROCESADORES VECTORIALES</h3>
+    Pueden ejecutar la misma instrucción en grandes conjuntos de datos. Tienen operaciones de alto nivel que trabajan sobre arreglos lineales de números o vectores.
+
+
+
+</p>
+
+</section>
+<section id="4.2.2">
+    <h2>4.2.2 Arquitectura de computadores secuenciales</h2>
+<p>
+    A diferencia de los sistemas combinacionales, en los sistemas secuenciales, los valores de las salidas, en un momento dado, no dependen exclusivamente de los valores de las entradas en dicho momento, sino también dependen del estado anterior o estado interno. El sistema secuencial más simple es el biestable, de los cuales, el de tipo D (o cerrojo) es el más utilizado actualmente.
+    El sistema secuencial requiere de la utilización de un dispositivo de memoria que pueda almacenar la historia pasada de sus entradas (denominadas variables de estado) y le permita mantener su estado durante algún tiempo, estos dispositivos de memoria pueden ser sencillos como un simple retardador o celdas de memoria de tipo DRAM, SRAM o multivibradores biestables también conocido como Flip-Flop.
+    
+   <h3>TIPOS DE SISTEMAS SECUENCIALES</h3> 
+    En este tipo de circuitos entra un factor que no se había considerado en los circuitos combinacionales, dicho factor es el tiempo, según como manejan el tiempo se pueden clasificar en: circuitos secuenciales síncronos y circuitos secuenciales asíncronos.
+    
+   <h3> CIRCUITOS SECUENCIALES ASÍNCRONOS</h3>
+    En circuitos secuenciales asíncronos los cambios de estados ocurren al ritmo natural asociado a las compuertas lógicas utilizadas en su implementación, lo que produce retardos en cascadas entre los biestables del circuito, es decir no utilizan elementos especiales de memoria, lo que puede ocasionar algunos problemas de funcionamiento, ya que estos retardos naturales no están bajo el control del diseñador y además no son idénticos en cada compuerta lógica.
+    
+    <h3>CIRCUITOS SECUENCIALES SÍNCRONOS</h3>
+    Los circuitos secuenciales síncronos solo permiten un cambio de estado en los instantes marcados o autorizados por una señal de sincronismo de tipo oscilatorio denominada reloj (cristal o circuito capaz de producir una serie de pulsos regulares en el tiempo), lo que soluciona los problemas que tienen los circuitos asíncronos originados por cambios de estado no uniformes dentro del sistema o circuito.
+
+
+
+</p>
+
+</section>
+<section id="4.2.3">
+    <h2>4.2.3 Organización de direcciones de memoria.</h2>
+
+<p>
+    La memoria principal en un ordenador en paralelo puede ser compartida —compartida entre todos los elementos de procesamiento en un único espacio de direcciones—, o distribuida —cada elemento de procesamiento tiene su propio espacio local de direcciones—. El término memoria distribuida se refiere al hecho de que la memoria se distribuye lógicamente, pero a menudo implica que también se distribuyen físicamente. La memoria distribuida - compartida y la virtualización de memoria combinan los dos enfoques, donde el procesador tiene su propia memoria local y permite acceso a la memoria de los procesadores que no son locales. Los accesos a la memoria local suelen ser más rápidos que los accesos a memoria no local. Las arquitecturas de ordenador en las que cada elemento de la memoria principal se puede acceder con igual latencia y ancho de banda son conocidas como arquitecturas de acceso uniforme a memoria (UMA). Típicamente, sólo se puede lograr con un sistema de memoria compartida, donde la memoria no está distribuida físicamente. Un sistema que no tiene esta propiedad se conoce como arquitectura de acceso a memoria no uniforme (NUMA). Los sistemas de memoria distribuidos tienen acceso no uniforme a la memoria.
+</p>
+</section>
+<section id="4.3">
+    <h2>4.3 Sistema de memoria compartida. </h2>
+
+<p>
+    Los sistemas de memoria compartida son un enfoque de computación paralela en el que múltiples procesadores acceden a una misma área de memoria compartida. Esto permite a los procesadores compartir datos y comunicarse de manera eficiente. Dentro de los sistemas de memoria compartida,
+     existen dos tipos principales de redes: las redes de medio compartida y las redes conmutadas.
+
+
+</p>
+</section>
+<section id="4.3.1.1">
+    <h2>4.3.1.1 Redes de medio compartida</h2>
+
+<p>
+    son aquellas en las que múltiples dispositivos se conectan y comparten el mismo medio físico para la transmisión de datos. Estas redes se caracterizan por la competencia entre los dispositivos para acceder al medio compartido y la necesidad de mecanismos para gestionar dicha competencia y evitar colisiones. Algunos ejemplos comunes de redes de medio compartida son las redes Ethernet con concentradores (hubs) y las redes inalámbricas Wi-Fi.
+<br>
+    Características Principales<br>
+    <br>
+    Medio Físico Compartido:<br>
+    <br>
+    Todos los dispositivos conectados a la red utilizan el mismo canal físico para enviar y recibir datos. Esto puede ser un cable (en el caso de Ethernet) o el espectro de radiofrecuencia (en el caso de Wi-Fi).<br>
+    <h3>Acceso Múltiple:</h3>
+    <br>
+    Se utilizan protocolos de acceso múltiple para gestionar el uso del medio compartido. <br>
+    Un ejemplo es el protocolo CSMA/CD (Carrier Sense Multiple Access with Collision Detection) en Ethernet y CSMA/CA (Carrier Sense Multiple Access with Collision Avoidance) en Wi-Fi.<br>
+    <h3>Colisiones:</h3>
+    <br>
+    Dado que múltiples dispositivos pueden intentar transmitir simultáneamente, pueden ocurrir colisiones de datos. Los protocolos de acceso se encargan de detectar y resolver estas colisiones.<br>
+    <h3>Rendimiento:</h3>
+    <br>
+    El rendimiento de la red puede disminuir a medida que aumenta el número de dispositivos conectados debido a la mayor competencia por el medio compartido.
+
+
+</p>
+<img src="unidades/fotos/U1/redes compartidas.png">
+</section>
+<section id="4.3.1.2">
+    <h2>4.3.1.2 Redes conmutadas</h2>
+<p>
+    Las redes conmutadas son aquellas en las que los dispositivos de la red están interconectados mediante conmutadores (switches) que dirigen el tráfico de datos de manera eficiente. En lugar de compartir un solo medio de transmisión, cada par de dispositivos tiene un canal de comunicación dedicado, lo que reduce las colisiones y mejora el rendimiento de la red.
+<br>
+    Características Principales<br>
+    Conmutación:<br>
+    <br>
+    Los switches operan en la capa de enlace de datos (capa 2) del modelo OSI y utilizan direcciones MAC para dirigir el tráfico a través de la red.
+    Los switches pueden crear múltiples caminos simultáneos para los datos, lo que permite que múltiples dispositivos se comuniquen al mismo tiempo sin interferencias.<br>
+    <br>
+    Segmentación de Red:
+    <br>
+    Los switches segmentan la red en dominios de colisión más pequeños, lo que mejora el rendimiento general al reducir la cantidad de colisiones en la red.<br>
+    <br>
+    Tablas de Conmutación:
+    <br>
+    Los switches mantienen una tabla de direcciones MAC que mapea las direcciones a los puertos del switch, permitiendo la entrega eficiente de los datos.<br>
+    <br>
+    Full-Duplex:
+    <br>
+    En una red conmutada, las conexiones pueden operar en modo full-duplex, lo que significa que los datos pueden ser enviados y recibidos simultáneamente, doblando efectivamente el ancho de banda disponible.<br>
+    <br>
+    Tipos de Redes Conmutadas<br>
+    <br>
+    Redes Ethernet Conmutadas:
+    <br>
+    La forma más común de red conmutada, donde los switches Ethernet son utilizados para conectar dispositivos en una red LAN. Los switches mejoran significativamente el rendimiento en comparación con los concentradores (hubs).<br>
+    Redes WAN Conmutadas:
+    <br>
+    En una red de área amplia (WAN), los routers pueden utilizar conmutación de paquetes para dirigir los datos a través de la red. Esto incluye tecnologías como MPLS (Multiprotocol Label Switching) y Frame Relay.
+
+
+
+
+
+</p>
+
+<img src="unidades/fotos/U1/Redes-Jerárquicas.png">
+
+</section>
+<section id="4.4">
+    <h2>4.4 Sisitemas de memoria construida.</h2>
+
+<p>
+    Los sistemas de memoria construida son una forma de organización de la memoria en la computación paralela en la que cada procesador tiene su propia memoria local. Esto permite una mayor independencia entre los procesadores y reduce la necesidad de acceder a una memoria compartida.
+
+
+</p>
+</section>
+
+<section id="4.5">
+    <h2>4.5 Casos de estudio.</h2>
+<p>
+
+    En el campo de la computación paralela, existen numerosos casos de estudio que han demostrado la eficacia y los beneficios de los enfoques paralelos en diferentes dominios. Algunos ejemplos incluyen el uso de computación paralela en simulaciones científicas, análisis de grandes conjuntos de datos, renderizado de gráficos y modelado de sistemas complejos.
+
+
+
+
+</p>
+
+
+<a href="#top" class="back-to-top">&#8679;</a>
+
+<p text-align="center"> presione para volver al inicio </p>
+
+
+
+</section>
+
+
+
+
+
+<footer>
+    <p>&copy; 2024 Arquitectura de Computadoras. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>
